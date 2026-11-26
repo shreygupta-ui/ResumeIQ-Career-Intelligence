@@ -1,0 +1,4 @@
+Alex Example | Computer Science Student
+Skills: Python, SQL, Git
+Project: Built a Python application for analyzing student data using SQL and Git.
+Education: Bachelor of Technology, Computer Science.

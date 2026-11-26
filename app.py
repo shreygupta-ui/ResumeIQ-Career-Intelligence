@@ -13,9 +13,93 @@ if page=='How it works':
     st.title('How ResumeIQ Pro works')
     st.markdown('''1. Extract text from a PDF or accept pasted text.\n2. Retrieve public job page text when available, or accept manual input.\n3. Fit TF-IDF on the two documents and calculate cosine similarity.\n4. Compare supported skill keywords and suggest improvements.\n5. Reorder relevant existing bullets, allow editing and export PDFs.\n6. Open the job page for manual application.\n\nNo supervised training, paid AI API, OCR or automatic application submission. Scores are not hiring probabilities or validated ATS scores. Keyword matching cannot verify expertise. Public job pages may block extraction; always review retrieved text. PDF export supports Latin text; unsupported characters may be replaced. Uploaded text is held in session memory, not intentionally saved to disk.''')
     st.latex(r'\cos(\theta)=\frac{A\cdot B}{\|A\|\|B\|}');st.stop()
-st.caption('CAREER INTELLIGENCE / RESUME OPTIMIZATION')
-st.title('Your next opportunity starts here.')
-st.write('Analyze your fit, improve your resume and prepare to apply.')
+st.markdown("""
+<style>
+.resumeiq-hero {
+    text-align: center;
+    padding: 38px 20px 30px;
+    margin-bottom: 25px;
+    border: 1px solid #303b55;
+    border-radius: 24px;
+    background: radial-gradient(
+        ellipse at top, #252044 0%, #111827 65%
+    );
+    animation: heroFade 0.8s ease-out;
+}
+.resumeiq-label {
+    color: #a78bfa;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+.resumeiq-brand {
+    font-size: clamp(38px, 6vw, 72px);
+    font-weight: 900;
+    letter-spacing: -2px;
+    margin: 12px 0;
+    background: linear-gradient(
+        90deg, #818cf8, #c084fc, #60a5fa
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.resumeiq-tagline {
+    color: #f8fafc;
+    font-size: 25px;
+    font-weight: 600;
+}
+.resumeiq-description {
+    color: #94a3b8;
+    font-size: 15px;
+    margin: 12px 0 24px;
+}
+.resumeiq-features {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.resumeiq-feature {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 14px 20px;
+    color: #c4b5fd;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+.resumeiq-feature:hover {
+    transform: translateY(-4px);
+    border-color: #a78bfa;
+    box-shadow: 0 0 20px #8b5cf640;
+}
+@keyframes heroFade {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+<div class="resumeiq-hero">
+    <div class="resumeiq-label">
+        ✦ INTELLIGENT CAREER PLATFORM
+    </div>
+    <div class="resumeiq-brand">ResumeIQ Pro</div>
+    <div class="resumeiq-tagline">
+        Your Career. Intelligently Optimized.
+    </div>
+    <div class="resumeiq-description">
+        Analyze smarter. Discover skill gaps.
+        Build better resumes.
+    </div>
+    <div class="resumeiq-features">
+        <div class="resumeiq-feature">🧠 NLP Powered</div>
+        <div class="resumeiq-feature">🎯 Smart Job Matching</div>
+        <div class="resumeiq-feature">📊 Resume Intelligence</div>
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
 mode=st.radio('Workspace',['Try sample demo','Analyze my resume'],horizontal=True)
 a,b=st.columns(2)
 with a:

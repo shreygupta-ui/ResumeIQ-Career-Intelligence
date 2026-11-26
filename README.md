@@ -1,6 +1,14 @@
 # ResumeIQ Pro V2
 Explainable career assistant built with Streamlit, TF-IDF and cosine similarity.
 
+## 🚀 Live Demo
+
+[![Launch ResumeIQ](https://img.shields.io/badge/Launch-ResumeIQ-8B5CF6?style=for-the-badge&logo=streamlit&logoColor=white)](https://resumeiq-career-intelligence-shrey.streamlit.app)
+
+Experience intelligent resume analysis, job matching, skill gap detection, resume optimization and PDF reporting.
+
+🔗 **Live Application:** https://resumeiq-career-intelligence-shrey.streamlit.app
+
 ## Run on Windows
 Open this folder in VS Code. In PowerShell run:
 ```powershell

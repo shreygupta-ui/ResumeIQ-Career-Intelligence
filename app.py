@@ -61,7 +61,44 @@ if 'analysis' in st.session_state and st.session_state['analysis'][0]==mode:
     st.progress(r['similarity']/100,text='TF-IDF cosine similarity')
     if r['coverage'] is not None:st.progress(r['coverage']/100,text='Detected skill coverage')
     a,b=st.columns(2);a.success('Matched: '+(', '.join(r['matched']) or 'None'));b.warning('Not detected: '+(', '.join(r['missing']) or 'None'))
-    if r['required']:st.bar_chart({'Matched':[len(r['matched'])],'Not detected':[len(r['missing'])]})
+    if r['required']:
+        import altair as alt
+        import pandas as pd
+
+        matched = len(r['matched'])
+        total = len(r['required'])
+        missing = total - matched
+
+        chart_data = pd.DataFrame({
+            'Status': ['Matched skills', 'Undetected skills'],
+            'Count': [matched, missing]
+        })
+
+        donut = alt.Chart(chart_data).mark_arc(
+            innerRadius=75, outerRadius=110
+        ).encode(
+            theta=alt.Theta('Count:Q'),
+            color=alt.Color(
+                'Status:N',
+                scale=alt.Scale(
+                    domain=['Matched skills', 'Undetected skills'],
+                    range=['#16A34A', '#EAB308']
+                ),
+                legend=alt.Legend(title='Skill Distribution')
+            ),
+            tooltip=['Status:N', 'Count:Q']
+        )
+
+        center = alt.Chart(pd.DataFrame({
+            'label': [f'{matched}/{total}']
+        })).mark_text(
+            fontSize=32, fontWeight='bold', color='white'
+        ).encode(text='label:N')
+
+        st.altair_chart(
+            (donut + center).properties(height=280),
+            use_container_width=True
+        )
     tips=suggestions(r,original);st.subheader('04 · Improvement roadmap')
     for tip in tips:st.write('• '+tip)
     st.download_button('Download analysis report (PDF)',pdf_bytes('ResumeIQ | Analysis report',report(r)+'\n\nImprovement roadmap\n'+'\n'.join(tips)),'ResumeIQ_report.pdf','application/pdf')
